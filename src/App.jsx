@@ -1,3 +1,4 @@
+// Módulo de Componentes Visuais - Desenvolvido por Manuela
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Tabs from "./components/Tabs";
