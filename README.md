@@ -1,49 +1,68 @@
-# Painel de Avaliação — Simulação Scrum Competitiva
+# 🚀 Simulação Scrum Competitiva - Painel de Avaliação
 
-Aplicação React para o painel de avaliação da Simulação Scrum Competitiva.
+Aplicação web desenvolvida em React para gerenciar e avaliar o desempenho de alunos em simulações do Framework Scrum. O sistema contempla o gerenciamento de turmas, alunos, escalação de papéis e relatório consolidado.
 
-## Requisitos
+---
 
-- Node.js 20 ou superior
-- npm
+## 📋 Sumário
+1. [Sobre o Projeto](#sobre-o-projeto)
+2. [Funcionalidades Principais](#funcionalidades-principais)
+3. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+4. [Estrutura do Repositório](#estrutura-do-repositório)
+5. [Como Executar o Projeto Localmente](#como-executar-o-projeto-localmente)
+6. [Mecanismos de Persistência](#mecanismos-de-persistência)
+7. [Autoria e Créditos](#autoria-e-créditos)
 
-## Instalação
+---
 
-```bash
-npm install
-```
+## 📑 Sobre o Projeto
 
-## Desenvolvimento
+O projeto consiste no porting e na refatoração da ferramenta de avaliação Scrum para o ecossistema React, garantindo maior modularização dos componentes, responsividade na interface e persistência reativa dos dados de simulação.
 
-```bash
-npm run dev
-```
+---
 
-Abra o endereço exibido pelo Vite no terminal.
+## ✨ Funcionalidades Principais
 
-## Build
+- **Aba Configuração:**
+  - Ajuste de parâmetros de tempo e critérios da simulação.
+  - Carregamento e redefinição da lista oficial de participantes.
 
-```bash
-npm run build
-```
+- **Aba Alunos:**
+  - Listagem detalhada de todos os participantes.
+  - Cadastro de novos integrantes com campos validados.
 
-## Pré-visualização do build
+- **Aba Escalação:**
+  - Atribuição dos papéis do Scrum (Product Owner, Scrum Master, Developers).
+  - Controle de limites por papel segundo a dinâmica.
 
-```bash
-npm run preview
-```
+- **Aba Avaliação de Papéis:**
+  - Formulário para atribuição de notas por critérios técnicos e comportamentais.
 
-## Persistência
+- **Aba Resultado Final:**
+  - Exibição gráfica e sumarizada dos vencedores e relatórios finais.
 
-Os dados são mantidos automaticamente no `localStorage` do navegador a cada alteração. O botão `Salvar dados` também permite gerar uma cópia JSON. O botão `Carregar dados` restaura uma cópia JSON gerada pelo painel.
+---
 
-## Lista de alunos
+## 🛠️ Tecnologias Utilizadas
 
-A lista inicial é carregada a partir dos nomes definidos no modelo da aplicação. A aba `Alunos` também permite importar uma planilha `.xlsx` ou `.xls`.
+- **React.js:** Biblioteca principal para criação da interface baseada em componentes.
+- **JavaScript (ES6+):** Lógica funcional e manipulação de estado.
+- **HTML5 & CSS3:** Semântica web e estilização.
+- **LocalStorage API:** Persistência local reativa dos dados.
+- **Git & GitHub:** Controle de versão distribuído.
 
-## Estrutura
+---
 
-- `src/components`: componentes da interface
-- `src/utils`: modelo de dados e regras de cálculo
-- `public/images`: imagens fornecidas para empresas, times e compradores
-- `public/data`: planilha de referência dos alunos
+## 📂 Estrutura do Repositório
+
+```text
+├── public/             # Arquivos públicos e ícones
+├── src/                # Código-fonte da aplicação React
+│   ├── assets/         # Imagens oficiais de fabricantes/setores
+│   ├── components/     # Componentes da interface
+│   ├── context/        # Gerenciamento de estado global
+│   ├── App.jsx         # Componente principal
+│   └── main.jsx        # Ponto de entrada do DOM
+├── .gitignore          # Regras de exclusão do Git
+├── package.json        # Dependências e scripts do projeto
+└── README.md           # Documentação completa
