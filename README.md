@@ -1,10 +1,10 @@
-# 🚀 Simulação Scrum Competitiva - Painel de Avaliação
+#  Simulação Scrum Competitiva - Painel de Avaliação
 
 Aplicação web desenvolvida em React para gerenciar e avaliar o desempenho de alunos em simulações do Framework Scrum. O sistema contempla o gerenciamento de turmas, alunos, escalação de papéis e relatório consolidado.
 
 ---
 
-## 📋 Sumário
+##  Sumário
 1. [Sobre o Projeto](#sobre-o-projeto)
 2. [Funcionalidades Principais](#funcionalidades-principais)
 3. [Tecnologias Utilizadas](#tecnologias-utilizadas)
@@ -15,13 +15,13 @@ Aplicação web desenvolvida em React para gerenciar e avaliar o desempenho de a
 
 ---
 
-## 📑 Sobre o Projeto
+## Sobre o Projeto
 
 O projeto consiste no porting e na refatoração da ferramenta de avaliação Scrum para o ecossistema React, garantindo maior modularização dos componentes, responsividade na interface e persistência reativa dos dados de simulação.
 
 ---
 
-## ✨ Funcionalidades Principais
+##  Funcionalidades Principais
 
 - **Aba Configuração:**
   - Ajuste de parâmetros de tempo e critérios da simulação.
@@ -43,7 +43,7 @@ O projeto consiste no porting e na refatoração da ferramenta de avaliação Sc
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - **React.js:** Biblioteca principal para criação da interface baseada em componentes.
 - **JavaScript (ES6+):** Lógica funcional e manipulação de estado.
@@ -53,7 +53,7 @@ O projeto consiste no porting e na refatoração da ferramenta de avaliação Sc
 
 ---
 
-## 📂 Estrutura do Repositório
+## Estrutura do Repositório
 
 ```text
 ├── public/             # Arquivos públicos e ícones
