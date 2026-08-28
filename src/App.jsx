@@ -1,74 +1,72 @@
-// Módulo de Componentes Visuais - Desenvolvido por Manuela
-// Regras de Negocio e Estado Scrum - Desenvolvido por Lara
-import { useEffect, useMemo, useState } from "react";
-import "./App.css";
-import Tabs from "./components/Tabs";
-import SetupTab from "./components/SetupTab";
-import StudentsTab from "./components/StudentsTab";
-import { SMTab, OwnerTab, POTab, DevTab, BuyerProfTab, BuyerProductTab } from "./components/EvaluationTabs";
-import { CorruptionTab, EscalacaoTab, ResultTab } from "./components/SpecialTabs";
-import { buildInitialData } from "./utils/model";
+import { useEffect, useMemo, useState } from "react";  
+import "./App.css";  
+import Tabs from "./components/Tabs";  
+import SetupTab from "./components/SetupTab";  
+import StudentsTab from "./components/StudentsTab";  
+import { SMTab, OwnerTab, POTab, DevTab, BuyerProfTab, BuyerProductTab } from "./components/EvaluationTabs";  
+import { CorruptionTab, EscalacaoTab, ResultTab } from "./components/SpecialTabs";  
+import { buildInitialData } from "./utils/model";  
 
-const STORAGE_KEY = "scrum-simulacao-react";
+const STORAGE_KEY = "scrum-simulacao-react";  
 
-export default function App() {
-  const [data, setData] = useState(() => loadStored() || buildInitialData());
-  const [tab, setTab] = useState("setup");
-  const [fileName, setFileName] = useState("(nenhum arquivo carregado)");
+export default function App() {  
+  const [data, setData] = useState(() => loadStored() || buildInitialData());  
+  const [tab, setTab] = useState("setup");  
+  const [fileName, setFileName] = useState("(nenhum arquivo carregado)");  
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [data]);
+  useEffect(() => {  
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));  
+  }, [data]);  
 
-  useEffect(() => {
-    document.documentElement.style.fontSize = `${data.meta.fontScale || 16}px`;
-  }, [data.meta.fontScale]);
+  useEffect(() => {  
+    document.documentElement.style.fontSize = `${data.meta.fontScale || 16}px`;  
+  }, [data.meta.fontScale]);  
 
-  const setField = (path, value) => {
-    setData(prev => {
-      const parts = path.split(".");
-      const next = structuredClone(prev);
-      let current = next;
-      parts.slice(0, -1).forEach(part => {
-        current = current[part];
-      });
-      current[parts.at(-1)] = value;
-      return next;
+  const setField = (path, value) => {  
+    setData(prev => {  
+      const parts = path.split(".");  
+      const next = structuredClone(prev);  
+      let current = next;  
+      parts.slice(0, -1).forEach(part => {  
+        current = current[part];  
+      });  
+      current[parts.at(-1)] = value;  
+      return next;   
     });
   };
 
   const renameEmpresa = (which, novoNome) => {
-    const oldName = which === "A" ? data.meta.empresaA : data.meta.empresaB;
-    const newName = novoNome.trim();
-    if (!newName || newName === oldName) return;
-    setData(prev => {
-      const next = structuredClone(prev);
-      const rename = value => value === oldName ? newName : value;
+    const oldName = which === "A" ? data.meta.empresaA : data.meta.empresaB;   
+    const newName = novoNome.trim();   
+    if (!newName || newName === oldName) return;  
+    setData(prev => {  
+      const next = structuredClone(prev);   
+      const rename = value => value === oldName ? newName : value;  
       ["sm","owner","po","dev","buyerProduct"].forEach(key => next[key].forEach(row => row.empresa = rename(row.empresa)));
-      next.alunos.forEach(aluno => aluno.empresa = rename(aluno.empresa));
-      next.corrupcao.empresaCorruptora = rename(next.corrupcao.empresaCorruptora);
-      next.sabotagem.empresaSabotador = rename(next.sabotagem.empresaSabotador);
-      if (next.teamImages?.[oldName]) {
-        next.teamImages[newName] = next.teamImages[oldName];
-        delete next.teamImages[oldName];
+      next.alunos.forEach(aluno => aluno.empresa = rename(aluno.empresa));  
+      next.corrupcao.empresaCorruptora = rename(next.corrupcao.empresaCorruptora);  
+      next.sabotagem.empresaSabotador = rename(next.sabotagem.empresaSabotador);   
+      if (next.teamImages?.[oldName]) {    
+        next.teamImages[newName] = next.teamImages[oldName];  
+        delete next.teamImages[oldName];  
       }
-      if (next.teamNames[oldName]) {
-        next.teamNames[newName] = next.teamNames[oldName];
-        delete next.teamNames[oldName];
-      }
-      if (which === "A") next.meta.empresaA = newName;
-      else next.meta.empresaB = newName;
-      return next;
-    });
-  };
+      if (next.teamNames[oldName]) {  
+        next.teamNames[newName] = next.teamNames[oldName];  
+        delete next.teamNames[oldName];  
+      }  
+      if (which === "A") next.meta.empresaA = newName;  
+      else next.meta.empresaB = newName;  
+      return next;  
+    }); 
+  }; 
 
-  const saveJson = () => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const safe = (data.meta.turma || "simulacao").replace(/[^a-z0-9_-]+/gi, "_");
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `scrum_simulacao_${safe}.json`;
+  const saveJson = () => {  
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });  
+    const url = URL.createObjectURL(blob);  
+    const safe = (data.meta.turma || "simulacao").replace(/[^a-z0-9_-]+/gi, "_");  
+    const link = document.createElement("a");  
+    link.href = url;  
+    link.download = `scrum_simulacao_${safe}.json`;   
     link.click();
     URL.revokeObjectURL(url);
   };
