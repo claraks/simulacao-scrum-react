@@ -1,4 +1,5 @@
 // Módulo de Componentes Visuais - Desenvolvido por Manuela
+// Regras de Negocio e Estado Scrum - Desenvolvido por Lara
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Tabs from "./components/Tabs";
